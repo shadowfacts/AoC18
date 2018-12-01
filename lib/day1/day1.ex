@@ -16,6 +16,18 @@ defmodule Day1 do
     end
   end
 
+  def first_repetition_stream(shifts) do
+    shifts
+      |> Stream.cycle()
+      |> Enum.reduce_while({0, [0]}, fn shift, {sum, seen} ->
+        sum = sum + shift
+        cond do
+          Enum.member?(seen, sum) -> {:halt, sum}
+          true -> {:cont, {sum, [sum | seen]}}
+        end
+      end)
+  end
+
   def parse_input() do
     File.read!("lib/day1/input.txt")
       |> String.split("\n")
@@ -32,6 +44,6 @@ defmodule Day1 do
 
   def part2() do
     parse_input()
-      |> first_repetition()
+      |> first_repetition_stream()
   end
 end

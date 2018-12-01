@@ -16,4 +16,12 @@ defmodule Day1Test do
     assert Day1.first_repetition([-6, 3, 8, 5, -6]) == 5
     assert Day1.first_repetition([7, 7, -2, -7, -4]) == 14
   end
+
+  test "first repetition stream" do
+    assert Day1.first_repetition_stream([1, -2, 3, 1]) == 2
+    assert Day1.first_repetition_stream([1, -1]) == 0
+    assert Day1.first_repetition_stream([3, 3, 4, -2, -4]) == 10
+    assert Day1.first_repetition_stream([-6, 3, 8, 5, -6]) == 5
+    assert Day1.first_repetition_stream([7, 7, -2, -7, -4]) == 14
+  end
 end
