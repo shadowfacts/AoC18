@@ -28,6 +28,18 @@ defmodule Day1 do
       end)
   end
 
+  def first_repetition_mapset(shifts) do
+    shifts
+      |> Stream.cycle()
+      |> Enum.reduce_while({0, MapSet.new([0])}, fn shift, {sum, seen} ->
+        sum = sum + shift
+        cond do
+          sum in seen -> {:halt, sum}
+          true -> {:cont, {sum, MapSet.put(seen, sum)}}
+        end
+      end)
+  end
+
   def parse_input() do
     File.read!("lib/day1/input.txt")
       |> String.split("\n")
@@ -44,6 +56,6 @@ defmodule Day1 do
 
   def part2() do
     parse_input()
-      |> first_repetition_stream()
+      |> first_repetition_mapset()
   end
 end
