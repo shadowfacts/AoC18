@@ -25,6 +25,7 @@ defmodule Day3Test do
       %Rect{id: 2, left: 3, top: 1, width: 4, height: 4},
       %Rect{id: 3, left: 5, top: 5, width: 2, height: 2}
     ]
+
     assert Day3.overlap_area(rects) == 4
   end
 
@@ -34,9 +35,9 @@ defmodule Day3Test do
       %Rect{id: 2, left: 3, top: 1, width: 4, height: 4},
       %Rect{id: 3, left: 5, top: 5, width: 2, height: 2}
     ]
+
     res = Day3.exclude_overlapping(rects)
     assert Enum.count(res) == 1
     assert Enum.at(res, 0).id == 3
   end
-  
 end

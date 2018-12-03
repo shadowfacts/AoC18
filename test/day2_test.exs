@@ -3,7 +3,15 @@ defmodule Day2Test do
   doctest Day2
 
   test "count characters" do
-    assert Day2.count_characters("abcdef") == %{"a" => 1, "b" => 1, "c" => 1, "d" => 1, "e" => 1, "f" => 1}
+    assert Day2.count_characters("abcdef") == %{
+             "a" => 1,
+             "b" => 1,
+             "c" => 1,
+             "d" => 1,
+             "e" => 1,
+             "f" => 1
+           }
+
     assert Day2.count_characters("bababc") == %{"a" => 2, "b" => 3, "c" => 1}
     assert Day2.count_characters("abbcde") == %{"a" => 1, "b" => 2, "c" => 1, "d" => 1, "e" => 1}
   end
