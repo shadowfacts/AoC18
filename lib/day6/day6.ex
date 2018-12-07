@@ -1,5 +1,4 @@
 defmodule Day6 do
-  
   @doc """
   Parses a node from a string.
 
@@ -11,6 +10,7 @@ defmodule Day6 do
   """
   def parse_node(s) do
     [x, y] = String.split(s, ", ")
+
     {
       x |> String.to_integer(),
       y |> String.to_integer()
@@ -39,7 +39,7 @@ defmodule Day6 do
       nil
   """
   def nearest_node(point, all) do
-    nearest = 
+    nearest =
       all
       |> Enum.map(fn other -> {other, distance(point, other)} end)
 
@@ -58,9 +58,11 @@ defmodule Day6 do
         0..grid_size
         |> Enum.reduce(acc, fn x, {areas, infinite_area_nodes} ->
           pt = {x, y}
+
           case nearest_node(pt, nodes) do
             nil ->
               {areas, infinite_area_nodes}
+
             nearest ->
               if x == 0 or y == 0 or x == grid_size or y == grid_size do
                 {
@@ -102,9 +104,11 @@ defmodule Day6 do
       0..grid_size
       |> Enum.reduce(acc, fn x, acc ->
         pt = {x, y}
+
         cond do
           total_distances(pt, nodes) < max_dist ->
             [pt | acc]
+
           true ->
             acc
         end
@@ -128,5 +132,4 @@ defmodule Day6 do
     |> region_near_most()
     |> Enum.count()
   end
-
 end

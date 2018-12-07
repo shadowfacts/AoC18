@@ -4,11 +4,15 @@ defmodule Day4Test do
   alias Day4.Timestamp
 
   test "parse event" do
-    assert Day4.parse_event("[1518-11-01 00:00] Guard #10 begins shift") == {%Timestamp{year: 1518, month: 11, day: 01, hour: 0, minute: 0}, "Guard #10 begins shift"}
+    assert Day4.parse_event("[1518-11-01 00:00] Guard #10 begins shift") ==
+             {%Timestamp{year: 1518, month: 11, day: 01, hour: 0, minute: 0},
+              "Guard #10 begins shift"}
   end
 
   test "parse guard" do
-    event = {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 00}, "Guard #10 begins shift"}
+    event =
+      {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 00}, "Guard #10 begins shift"}
+
     assert Day4.parse_guard(event) == "10"
   end
 
@@ -17,17 +21,19 @@ defmodule Day4Test do
       {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 05}, "falls asleep"},
       {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 55}, "wakes up"},
       {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 25}, "wakes up"},
-      {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 00}, "Guard #10 begins shift"},
+      {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 00},
+       "Guard #10 begins shift"},
       {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 30}, "falls asleep"}
     ]
 
     assert Day4.sort_events(events) == [
-      {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 00}, "Guard #10 begins shift"},
-      {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 05}, "falls asleep"},
-      {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 25}, "wakes up"},
-      {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 30}, "falls asleep"},
-      {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 55}, "wakes up"}
-    ]
+             {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 00},
+              "Guard #10 begins shift"},
+             {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 05}, "falls asleep"},
+             {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 25}, "wakes up"},
+             {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 30}, "falls asleep"},
+             {%Timestamp{year: 1518, month: 11, day: 01, hour: 00, minute: 55}, "wakes up"}
+           ]
   end
 
   test "get sleep times" do
@@ -52,9 +58,9 @@ defmodule Day4Test do
     ]
 
     assert Day4.get_sleep_times(events) == [
-      {"10", [5..25, 30..55, 24..29]},
-      {"99", [40..50, 36..46, 45..55]}
-    ]
+             {"10", [5..25, 30..55, 24..29]},
+             {"99", [40..50, 36..46, 45..55]}
+           ]
   end
 
   test "get max sleep time" do
@@ -79,5 +85,4 @@ defmodule Day4Test do
 
     assert Day4.get_most_frequent_sleep_time(guards) == {"99", 45, 3}
   end
-
 end

@@ -1,5 +1,4 @@
 defmodule Day5 do
-  
   @doc """
   Compares two codepoints for opposite case.
 
@@ -18,6 +17,7 @@ defmodule Day5 do
         else
           [c | s]
         end
+
       c, [] ->
         [c]
     end)
@@ -76,6 +76,7 @@ defmodule Day5 do
       s = <<c::utf8>>
       str = String.replace(input, s, "")
       str = String.replace(str, String.upcase(s), "")
+
       input
       |> String.replace(s, "")
       |> String.replace(String.upcase(s), "")
@@ -87,7 +88,7 @@ defmodule Day5 do
   end
 
   def parse_input() do
-    File.read!("lib/day5/input.txt")    
+    File.read!("lib/day5/input.txt")
   end
 
   def part1() do
@@ -101,5 +102,4 @@ defmodule Day5 do
     parse_input()
     |> min_length()
   end
-
 end
